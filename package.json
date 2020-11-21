@@ -1,0 +1,28 @@
+{
+  "name": "vu-racing",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "url": "https://github.com/Rylius/VU-Racing"
+  },
+  "author": {
+    "name": "Ry",
+    "email": "rylius@protonmail.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.2.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.27.0",
+    "typescript": "^4.0.3",
+    "vue": "^2.6.12",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "scripts": {
+    "dev": "parcel webui/index.html",
+    "build": "parcel build webui/index.html --no-source-maps && vuicc.exe dist ui.vuic",
+    "vuicc": "vuicc.exe dist ui.vuic"
+  }
+}

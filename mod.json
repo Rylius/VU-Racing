@@ -1,0 +1,17 @@
+{
+  "Name": "Racing",
+  "Description": "Race other players on your dirtbike",
+  "Authors": [
+    "Ry"
+  ],
+  "Tags": [
+    "racing"
+  ],
+  "URL": "https://github.com/Rylius/VU-Racing",
+  "Version": "1.0.0",
+  "Dependencies": {
+    "veniceext": "^1.0.0"
+  },
+  "HasVeniceEXT": true,
+  "HasWebUI": true
+}

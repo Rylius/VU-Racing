@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+@import "./normalize.css";
+
+$bf3-blue: #4db1f1;
+$bf3-white: #f2f8fc;
+$bf3-gray: #aab7c6;
+
+@mixin bf3-container() {
+  padding: 1em;
+
+  color: $bf3-white;
+  //background-image: transparentize($bf3-blue, 0.5) url("fb://UI/Art/HUD/bgContainerBox"), ;
+  background: transparentize($bf3-blue, 0.5),;
+  background-size: contain;
+  border-radius: 0.2em;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  font-family: "Purista EA Medium", "Venice-Medium", sans-serif;
+
+  user-select: none;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .waypoint {
+    position: absolute;
+
+    $size: 1em;
+    width: $size;
+    height: $size;
+
+    //transition: left 0.1s linear, top 0.1s linear;
+
+    transform: translate(-$size, -2em);
+
+    @include bf3-container;
+  }
+
+  .position-info {
+    position: absolute;
+    left: 2rem;
+    top: 22vh;
+
+    @include bf3-container;
+  }
+
+  .checkpoint-update {
+    position: absolute;
+    top: 20%;
+
+    text-align: center;
+    @include bf3-container;
+
+    .checkpoint {
+      font-size: 1.5em;
+    }
+  }
+
+  .scoreboard {
+    min-width: 40vw;
+    min-height: 50vh;
+
+    // Force separate composite layer so we can render above the waypoint marker
+    transform: translate(0);
+
+    @include bf3-container;
+
+    transition: opacity 0.1s linear;
+    opacity: 0;
+
+    &.visible {
+      transition: opacity 0.05s linear;
+      opacity: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        background-color: transparentize($bf3-gray, 0.3);
+      }
+
+      td, th {
+        padding: 0.3rem;
+        padding-right: 1rem;
+        text-align: left;
+      }
+
+      td:first-child {
+        text-align: center;
+      }
+
+      td:last-child {
+        width: 100%;
+      }
+
+      tbody {
+        tr:nth-child(1) {
+          background-color: transparentize($bf3-gray, 0.5);
+        }
+
+        tr:nth-child(2) {
+          background-color: transparentize($bf3-gray, 0.4);
+        }
+      }
+    }
+  }
+}

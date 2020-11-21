@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2015",
+    "strict": true,
+    "module": "ES2015",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "webui/**/*.ts",
+    "webui/**/*.vue"
+  ]
+}
