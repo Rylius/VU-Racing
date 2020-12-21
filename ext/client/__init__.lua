@@ -43,7 +43,7 @@ function RacingClient:OnLoad()
     self:ResetCheckpoint()
 
     WebUI:ExecuteJS('setScoreboardVisible(false)')
-    WebUI:ExecuteJS('trackChanged(' .. json.encode({ name = self.track.name, checkpoints = #self.track.checkpoints }) .. ')')
+    WebUI:ExecuteJS(string.format('trackChanged(%s)', json.encode({ name = self.track.name, checkpoints = #self.track.checkpoints })))
 
     WebUI:Show()
 
@@ -79,10 +79,10 @@ function RacingClient:ResetCheckpoint()
             number = 0,
             position = Vec2(),
         }
-        WebUI:ExecuteJS('updateWaypoint(' .. json.encode(data) .. ')')
+        WebUI:ExecuteJS(string.format('updateWaypoint(%s)', json.encode(data)))
     end
 
-    WebUI:ExecuteJS('updateCheckpoint(' .. json.encode({ number = 0 }) .. ')')
+    WebUI:ExecuteJS(string.format('updateCheckpoint(%s)', json.encode({ number = 0 })))
 end
 
 function RacingClient:CheckpointChanged(newNumber)
@@ -95,7 +95,7 @@ function RacingClient:CheckpointChanged(newNumber)
         self.nextCheckpoint = nil
 
         if newNumber >= 1 then
-            WebUI:ExecuteJS('checkpointReached(' .. json.encode({ number = self.lastCheckpoint.number }) .. ')')
+            WebUI:ExecuteJS(string.format('checkpointReached(%s)', json.encode({ number = self.lastCheckpoint.number })))
         end
         self.lastCheckpoint:SetActive(false)
     end
@@ -111,18 +111,18 @@ function RacingClient:CheckpointChanged(newNumber)
     end
 
     if self.lastCheckpoint ~= nil then
-        WebUI:ExecuteJS('updateCheckpoint(' .. json.encode({ number = self.lastCheckpoint.number }) .. ')')
+        WebUI:ExecuteJS(string.format('updateCheckpoint(%s)', json.encode({ number = self.lastCheckpoint.number })))
     else
-        WebUI:ExecuteJS('updateCheckpoint(' .. json.encode({ number = 0 }) .. ')')
+        WebUI:ExecuteJS(string.format('updateCheckpoint(%s)', json.encode({ number = 0 })))
     end
 end
 
 function RacingClient:TimeChanged(data)
-    WebUI:ExecuteJS('updateTime(' .. json.encode(data) .. ')')
+    WebUI:ExecuteJS(string.format('updateTime(%s)', json.encode(data)))
 end
 
 function RacingClient:PositionChanged(data)
-    WebUI:ExecuteJS('updatePosition(' .. json.encode(data) .. ')')
+    WebUI:ExecuteJS(string.format('updatePosition(%s)', json.encode(data)))
 end
 
 function RacingClient:ScoreboardUpdated(data)
@@ -135,7 +135,13 @@ function RacingClient:ScoreboardUpdated(data)
         end
     end
 
-    WebUI:ExecuteJS('updateScoreboard(' .. json.encode(data) .. ')')
+    local jsonData, errorMessage = json.encode(data)
+    if jsonData == nil then
+        print(string.format('Received invalid scoreboard update (%s)', errorMessage))
+        print(data)
+    else
+        WebUI:ExecuteJS(string.format('updateScoreboard(%s)', jsonData))
+    end
 end
 
 function RacingClient:Update(_)
@@ -155,7 +161,7 @@ function RacingClient:Update(_)
                 finish = self.nextCheckpoint.finish,
             }
         end
-        WebUI:ExecuteJS('updateWaypoint(' .. json.encode(data) .. ')')
+        WebUI:ExecuteJS(string.format('updateWaypoint(%s)', json.encode(data)))
     end
 end
 
