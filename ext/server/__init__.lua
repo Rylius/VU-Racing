@@ -243,6 +243,7 @@ function RacingServer:UpdateRanking()
         rank = rank + 1
     end
 
+    local unrankedPlayers = 0
     for playerId, position in pairs(ranking) do
         local trackTime = self.playerTrackTimes[playerId] or -1
         --print(string.format('%2d: %s (%dms)', position, playerId, trackTime))
@@ -251,7 +252,12 @@ function RacingServer:UpdateRanking()
             self.finishedPlayers = self.finishedPlayers + 1
         end
 
-        self.scoreboard[position] = { id = playerId, time = trackTime }
+        local index = position
+        if self.scoreboard[index] ~= nil then
+            index = (playerCount - unrankedPlayers) - 1
+            unrankedPlayers = unrankedPlayers + 1
+        end
+        self.scoreboard[index] = { id = playerId, time = trackTime }
 
         local player = PlayerManager:GetPlayerById(playerId)
         if player ~= nil then
