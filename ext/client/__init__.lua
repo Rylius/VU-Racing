@@ -32,7 +32,7 @@ function RacingClient:OnLoad()
         screen = UIScreenAsset(screen)
 
         local scoreboardDir = 'UI/Flow/Screen/Scoreboards/'
-        if screen.name:sub(1, #scoreboardDir) == scoreboardDir then
+        if screen.name:sub(1, #scoreboardDir) == scoreboardDir and screen.name:find('HUD') then
             hook:Return(nil)
         end
     end)
