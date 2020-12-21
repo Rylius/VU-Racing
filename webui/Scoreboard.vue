@@ -12,8 +12,8 @@
             <tbody>
             <tr v-for="(entry, i) in scoreboard">
                 <td>{{ i + 1 }}</td>
-                <td>{{ entry.name }}</td>
-                <td>{{ entry.time | time }}</td>
+                <td>{{ entry ? entry.name : '???' }}</td>
+                <td>{{ (entry ? entry.time : 0) | time }}</td>
             </tr>
             </tbody>
         </table>

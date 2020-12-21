@@ -1,9 +1,9 @@
 <template>
     <div class="game">
         <waypoint v-if="track" :track="track"></waypoint>
-        <player-status :track="track"></player-status>
-        <checkpoint-update :track="track"></checkpoint-update>
-        <scoreboard :track="track"></scoreboard>
+        <player-status v-if="track" :track="track"></player-status>
+        <checkpoint-update v-if="track" :track="track"></checkpoint-update>
+        <scoreboard v-if="track" :track="track"></scoreboard>
     </div>
 </template>
 
