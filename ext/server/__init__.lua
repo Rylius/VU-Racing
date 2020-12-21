@@ -167,22 +167,14 @@ function RacingServer:ForcePlayerIntoVehicle(player, vehicle)
     player:EnableInput(EntryInputActionEnum.EIAChangeEntry8, false)
 end
 
--- Spawn a vehicle in front of a player
 function RacingServer:SpawnPlayerVehicle(player)
     if player == nil or not player.hasSoldier then
         return
     end
 
-    local spawnOrigin = player.soldier.worldTransform.trans:Clone()
-    spawnOrigin = spawnOrigin + (player.soldier.worldTransform.forward * 3)
 
     local params = EntityCreationParams()
-    params.transform = LinearTransform(
-            player.soldier.worldTransform.left,
-            player.soldier.worldTransform.up,
-            player.soldier.worldTransform.forward,
-            spawnOrigin
-    )
+    params.transform = player.soldier.worldTransform:Clone()
     params.variationNameHash = 0
     params.networked = true
 
