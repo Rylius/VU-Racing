@@ -211,6 +211,12 @@ function RacingShared:ModifyInstances()
     -- Pretty much disable critical damage
     vehicle.disabledDamageThreshold = 1
 
+    local passengerEntryData = SoldierEntryComponentData(ResourceManager:FindInstanceByGuid(Guid('38FA36CC-22C8-4624-89BF-1D95C7CE7815'), Guid('41FA3F43-75E4-4BFE-8C45-02E6DBD9A218')))
+    passengerEntryData:MakeWritable()
+    passengerEntryData.forbiddenForHuman = true
+    -- This might be break some things and forbiddenForHuman seems to work fine
+    --passengerEntryData.excluded = true
+
     print('Instances modified')
 end
 
