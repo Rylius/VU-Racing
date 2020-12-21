@@ -31,7 +31,8 @@ function RacingClient:OnLoad()
     Hooks:Install('UI:PushScreen', 1, function(hook, screen, priority, parentGraph)
         screen = UIScreenAsset(screen)
 
-        if screen.name == 'UI/Flow/Screen/Scoreboards/ScoreboardTwoTeamsHUD32Screen' then
+        local scoreboardDir = 'UI/Flow/Screen/Scoreboards/'
+        if screen.name:sub(1, #scoreboardDir) == scoreboardDir then
             hook:Return(nil)
         end
     end)
