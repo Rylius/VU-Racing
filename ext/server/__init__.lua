@@ -5,6 +5,8 @@ local debug = false
 function RacingServer:__init()
     print('Initializing server module')
 
+    ServerUtils:SetCustomGameModeName('Racing')
+
     self:ResetState()
 
     Events:Subscribe('Level:Loaded', self, self.OnLoad)
