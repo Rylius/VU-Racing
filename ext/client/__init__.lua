@@ -173,7 +173,7 @@ function RacingClient:UpdateInput()
     if InputManager:WentDown(InputConceptIdentifiers.ConceptScoreboard) then
         NetEvents:SendLocal('Scoreboard')
         WebUI:ExecuteJS('setScoreboardVisible(true)')
-    elseif InputManager:WentUp(InputConceptIdentifiers.ConceptScoreboard) then
+    elseif not InputManager:IsDown(InputConceptIdentifiers.ConceptScoreboard) then
         WebUI:ExecuteJS('setScoreboardVisible(false)')
     end
 end
