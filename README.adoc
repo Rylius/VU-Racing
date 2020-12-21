@@ -17,12 +17,22 @@ The End Game expansion (`XP5`) is required for this mod.
 
 == Server Configuration
 
-No special configuration required!
+.Startup.txt
+....
+# Spawning on squad members leads to all sorts of issues, so disable that
+vu.SquadSize 1
 
-Not all maps have tracks available.
+# Recommended but not required
+vars.roundStartPlayerCount 1
+vars.roundRestartPlayerCount 1
+
+# Not strictly necessary, but why not
+vars.3pCam true
+....
 
 Recommended `MapList.txt` (feel free to change the order):
 
+.MapList.txt
 ....
 MP_007 TeamDeathMatch0 1
 XP5_003 TeamDeathMatch0 1
