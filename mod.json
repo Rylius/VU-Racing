@@ -8,10 +8,13 @@
     "racing"
   ],
   "URL": "https://github.com/Rylius/VU-Racing",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "Dependencies": {
-    "veniceext": "^1.0.0"
+    "veniceext": "^1.0.8"
   },
+  "RequiredXPacks": [
+    5
+  ],
   "HasVeniceEXT": true,
   "HasWebUI": true
 }
