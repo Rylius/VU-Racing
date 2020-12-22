@@ -8,7 +8,7 @@
     "racing"
   ],
   "URL": "https://github.com/Rylius/VU-Racing",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "Dependencies": {
     "veniceext": "^1.0.8"
   },
